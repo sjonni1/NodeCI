@@ -27,7 +27,7 @@ describe('User is not logged in', async () => {
         }
     ];
 
-    test.only('Blog related actions are prohibited', async () => {
+    test('Blog related actions are prohibited', async () => {
         const results = await page.execRequests(actions);
         
         for ( let result of results) {
@@ -69,6 +69,7 @@ describe('When logged in', async () => {
 
         test('Submitting takes user to review screen', async () => {
             const text = await page.getContentsOf('h5');
+
             expect(text).toEqual('Please confirm your entries');
         });
 
@@ -90,7 +91,6 @@ describe('When logged in', async () => {
         });
     
         test('the form shows an error message', async () => {
-            await page.waitFor('.red-text');
             const titleError = await page.getContentsOf('.title .red-text');
             const contentError = await page.getContentsOf('.content .red-text');
     
